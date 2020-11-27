@@ -1,0 +1,44 @@
+Clone the github repository https://github.com/...
+
+Install the pip package manager by running the following commands
+$ sudo apt update
+$ sudo apt install --yes python3-pip
+
+'''
+Install Flask by:
+$ python3 -m pip install Flask python-dotenv
+'''
+
+Run the following commands to install Foreman and HTTPie:
+$ sudo apt install --yes ruby-foreman httpie
+
+Setting dynamodb env:
+$ sudo apt update
+$ sudo apt install --yes awscli
+$ aws configure
+    AWS Access Key ID [None]: fakeMyKeyId
+    AWS Secret Access Key [None]: fakeSecretAccessKey
+    Default region name [None]: us-west-2
+    Default output format [None]: table
+
+Installing Boto3:
+$ sudo apt install --yes python3-boto3
+
+Adding Dynamo-flask extention:
+$ python3 -m pip install --user flask-dynamo
+
+Populating Dynamo DB and SQLite3 DB:
+$ FLASK_APP=app.py
+$ flask init
+
+Run application:
+$ foreman start
+
+On a second Terminal:
+$ curl -i -X POST -H 'Content-Type:application/json' -d '{"to":"ankita", "from":"aditi", "message":"How are you?"}' http://localhost:5000/sendMessage;
+
+$ curl -i -X POST -H 'Content-Type:application/json' -d '{"messageId":"00bf7f51-4636-4008-80fe-f65d925c17ab", "reply":"I am fine"}' http://localhost:5000/reply;
+
+$ curl -i -X GET -H 'Content-Type:application/json' -d '{"username":"Rick"}' http://localhost:5000/list/messages;
+
+$ curl -i -X GET -H 'Content-Type:application/json' -d '{"messageId":"9d529dd4-548b-4258-aa8e-23e34dc8d48i"}' http://localhost:5000/list/replies;
